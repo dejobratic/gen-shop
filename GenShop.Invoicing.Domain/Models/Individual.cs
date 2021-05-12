@@ -6,8 +6,8 @@
         Customer
     {
         public Individual(
-            string fullName, bool paysVAT) 
-            : base(fullName, paysVAT)
+            string fullName, Address address, bool paysVAT) 
+            : base(fullName, address, paysVAT)
         {
         }
     }
