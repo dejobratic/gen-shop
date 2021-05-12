@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GenShop.Invoicing.Domain.Kernel;
+using System;
 
 namespace GenShop.Invoicing.Domain.Models
 {
-    public class Invoice
+    public class Invoice :
+        Entity<Guid>
     {
         public string Number { get; }
         public DateTime CreatedAt { get;  }
@@ -15,6 +17,7 @@ namespace GenShop.Invoicing.Domain.Models
             Supplier supplier,
             Customer customer,
             Product product)
+            : base(Guid.NewGuid())
         {
             Number = Guid.NewGuid().ToString("n");
             CreatedAt = DateTime.UtcNow;
@@ -34,9 +37,11 @@ namespace GenShop.Invoicing.Domain.Models
 
         private double CalculateVATRate()
         {
-            if (!Supplier.PaysVAT) return 0;
+            if (!Supplier.PaysVAT) 
+                return 0;
 
-            if (!Customer.InEU) return 0;
+            if (!Customer.InEU) 
+                return 0;
 
             if (Customer.InEU && !Customer.PaysVAT && Customer.Address.Country != Supplier.Address.Country)
                 return Customer.Address.Country.VATRate;

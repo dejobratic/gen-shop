@@ -1,6 +1,9 @@
-﻿namespace GenShop.Invoicing.Domain.Models
+﻿using GenShop.Invoicing.Domain.Kernel;
+
+namespace GenShop.Invoicing.Domain.Models
 {
-    public class InvoiceAmount
+    public class InvoiceAmount :
+        ValueObject<InvoiceAmount>
     {
         public double Subtotal { get; }
         public double VAT { get; }

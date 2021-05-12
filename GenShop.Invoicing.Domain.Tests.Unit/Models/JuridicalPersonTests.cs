@@ -21,6 +21,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 expectedAddress,
                 expectedPaysVAT);
 
+            actual.Id.Should().NotBeEmpty();
             actual.FullName.Should().Be(expectedFullName);
             actual.Address.Should().Be(expectedAddress);
             actual.PaysVAT.Should().Be(expectedPaysVAT);

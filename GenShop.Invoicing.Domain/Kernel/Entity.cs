@@ -2,7 +2,8 @@
 
 namespace GenShop.Invoicing.Domain.Kernel
 {
-    public class Entity<TId> : IEquatable<Entity<TId>>
+    public class Entity<TId> : 
+        IEquatable<Entity<TId>>
     {
         public TId Id { get; protected set; }
 

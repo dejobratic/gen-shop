@@ -25,6 +25,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 expectedCustomer,
                 _product);
 
+            actual.Id.Should().NotBeEmpty();
             actual.Number.Should().NotBeNullOrEmpty();
             actual.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, precision: 1000);
             actual.Supplier.Should().BeEquivalentTo(expectedSupplier);

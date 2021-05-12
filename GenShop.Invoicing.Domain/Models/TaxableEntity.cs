@@ -1,6 +1,10 @@
-﻿namespace GenShop.Invoicing.Domain.Models
+﻿using GenShop.Invoicing.Domain.Kernel;
+using System;
+
+namespace GenShop.Invoicing.Domain.Models
 {
-    public abstract class TaxableEntity
+    public abstract class TaxableEntity :
+        Entity<Guid>
     {
         public string FullName { get; }
         public Address Address { get; }
@@ -11,6 +15,7 @@
             string fullName,
             Address address,
             bool paysVAT)
+            : base(Guid.NewGuid())
         {
             FullName = fullName;
             Address = address;

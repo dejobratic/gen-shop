@@ -18,6 +18,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 description,
                 amount);
 
+            actual.Id.Should().NotBeEmpty();
             actual.Description.Should().Be(description);
             actual.Amount.Should().Be(amount);
         }
