@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GenShop.Invoicing.Contract\GenShop.Invoicing.Contract.csproj" />
     <ProjectReference Include="..\GenShop.Invoicing.Domain\GenShop.Invoicing.Domain.csproj" />
   </ItemGroup>
 

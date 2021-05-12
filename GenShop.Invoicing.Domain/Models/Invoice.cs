@@ -7,50 +7,73 @@ namespace GenShop.Invoicing.Domain.Models
         Entity<Guid>
     {
         public string Number { get; }
-        public DateTime CreatedAt { get;  }
-        public Supplier Supplier { get;  }
-        public Customer Customer { get;  }
-        public Product Product { get;  }
+        public DateTime CreatedAt { get; }
+        public Supplier Supplier { get; }
+        public Customer Customer { get; }
+        public Product Product { get; }
         public InvoiceAmount Amount { get; }
 
         public Invoice(
             Supplier supplier,
             Customer customer,
             Product product)
-            : base(Guid.NewGuid())
+            : this(
+                  Guid.NewGuid(),
+                  Guid.NewGuid().ToString("n"),
+                  DateTime.UtcNow,
+                  supplier,
+                  customer,
+                  product,
+                  CalculateInvoiceAmount(product, supplier, customer))
         {
-            Number = Guid.NewGuid().ToString("n");
-            CreatedAt = DateTime.UtcNow;
+        }
+
+        public Invoice(
+            Guid id,
+            string number,
+            DateTime createdAt,
+            Supplier supplier,
+            Customer customer,
+            Product product,
+            InvoiceAmount amount)
+            : base(id)
+        {
+            Number = number;
+            CreatedAt = createdAt;
             Supplier = supplier;
             Customer = customer;
             Product = product;
-            Amount = CalculateInvoiceAmount();
+            Amount = amount;
         }
 
-        private InvoiceAmount CalculateInvoiceAmount()
+        private static InvoiceAmount CalculateInvoiceAmount(
+            Product product,
+            Supplier supplier,
+            Customer customer)
         {
-            var subtotal = Product.Amount;
-            var VATRate = CalculateVATRate();
+            var subtotal = product.Amount;
+            var VATRate = CalculateVATRate(supplier, customer);
 
             return new InvoiceAmount(subtotal, VATRate);
         }
 
-        private double CalculateVATRate()
+        private static double CalculateVATRate(
+            Supplier supplier, Customer customer)
         {
-            if (!Supplier.PaysVAT) 
+            if (!supplier.PaysVAT)
                 return 0;
 
-            if (!Customer.InEU) 
+            if (!customer.InEU)
                 return 0;
 
-            if (Customer.InEU && !Customer.PaysVAT && Customer.Address.Country != Supplier.Address.Country)
-                return Customer.Address.Country.VATRate;
+            if (customer.InEU && !customer.PaysVAT && customer.Address.Country != supplier.Address.Country)
+                return customer.Address.Country.VATRate;
 
-            if (Customer.InEU && Customer.PaysVAT && Customer.Address.Country != Supplier.Address.Country)
-                return Supplier.Address.Country.VATRate;
+            if (customer.InEU && customer.PaysVAT && customer.Address.Country != supplier.Address.Country)
+                return supplier.Address.Country.VATRate;
 
-            if(Customer.Address.Country == Supplier.Address.Country)
-                return Customer.Address.Country.VATRate;
+            if (customer.Address.Country == supplier.Address.Country)
+                return customer.Address.Country.VATRate;
 
             throw new Exception("Unable to calculate VAT rate.");
         }

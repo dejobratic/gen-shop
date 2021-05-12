@@ -8,14 +8,31 @@ namespace GenShop.Invoicing.Domain.Models
     {
         public string Description { get; }
         public double Amount { get; }
+        public Guid SupplierId { get; }
 
         public Product(
             string description,
-            double amount)
-            : base(Guid.NewGuid())
+            double amount,
+            Guid supplierId)
+            : this(
+                  Guid.NewGuid(),
+                  description,
+                  amount,
+                  supplierId)
+        {
+
+        }
+
+        public Product(
+            Guid id,
+            string description,
+            double amount,
+            Guid supplierId)
+            : base(id)
         {
             Description = description;
             Amount = amount;
+            SupplierId = supplierId;
         }
     }
 }

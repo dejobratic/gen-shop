@@ -11,7 +11,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Fakes
         {
             return new Customer(
                 name,
-                address ?? AddressMockBuilder.BuildGermany(),
+                address ?? AddressMockBuilder.BuildFrance(),
                 paysVat);
         }
     }

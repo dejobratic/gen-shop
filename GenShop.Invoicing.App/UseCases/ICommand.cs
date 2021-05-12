@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using GenShop.Invoicing.Contract;
+using System.Threading.Tasks;
 
 namespace GenShop.Invoicing.App.UseCases
 {
@@ -7,8 +8,14 @@ namespace GenShop.Invoicing.App.UseCases
         Task Execute();
     }
 
-    public interface ICommand<T>
+    public interface ICommand<Tout>
     {
-        Task<T> Execute();
+        Task<Tout> Execute();
+    }
+
+    public interface ICommand<Tin, Tout>
+        where Tin : IRequest
+    {
+        Task<Tout> Execute(Tin request);
     }
 }

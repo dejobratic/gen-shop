@@ -12,13 +12,14 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
     public class InvoiceTests
     {
         private static readonly Product _product =
-            new Product("Clean Code", 30);
+            new Product("Clean Code", 30, Guid.NewGuid());
 
         [TestMethod]
         public void Able_to_create_instance()
         {
             var expectedSupplier = SupplierMockBuilder.Build();
             var expectedCustomer = CustomerMockBuilder.Build();
+            var expectedAmount = new InvoiceAmount(30, 0.19);
 
             var actual = new Invoice(
                 expectedSupplier,
@@ -28,9 +29,37 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
             actual.Id.Should().NotBeEmpty();
             actual.Number.Should().NotBeNullOrEmpty();
             actual.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, precision: 1000);
-            actual.Supplier.Should().BeEquivalentTo(expectedSupplier);
-            actual.Customer.Should().BeEquivalentTo(expectedCustomer);
-            actual.Product.Should().BeEquivalentTo(_product);
+            actual.Supplier.Should().Be(expectedSupplier);
+            actual.Customer.Should().Be(expectedCustomer);
+            actual.Product.Should().Be(_product);
+            actual.Amount.Should().Be(expectedAmount);
+        }
+
+        [TestMethod]
+        public void Able_to_create_instance_with_persistence_constructor()
+        {
+            var expectedId = Guid.NewGuid();
+            var expectedNumber = "Invoice#";
+            var expectedCreatedAt = DateTime.UtcNow;
+            var expectedSupplier = SupplierMockBuilder.Build();
+            var expectedCustomer = CustomerMockBuilder.Build();
+            var expectedAmount = new InvoiceAmount(30, 0.19);
+
+            var actual = new Invoice(
+                expectedId,
+                expectedNumber,
+                expectedCreatedAt,
+                expectedSupplier,
+                expectedCustomer,
+                _product,
+                expectedAmount);
+
+            actual.Id.Should().Be(expectedId);
+            actual.Number.Should().Be(expectedNumber);
+            actual.CreatedAt.Should().Be(expectedCreatedAt);
+            actual.Supplier.Should().Be(expectedSupplier);
+            actual.Customer.Should().Be(expectedCustomer);
+            actual.Product.Should().Be(_product);
             actual.Amount.Should().NotBeNull();
         }
 
