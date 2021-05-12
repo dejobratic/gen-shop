@@ -12,11 +12,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
     public class InvoiceTests
     {
         private static readonly Product _product =
-            new Product
-            {
-                Description = "Clean Code",
-                Amount = 30
-            };
+            new Product("Clean Code", 30);
 
         [TestMethod]
         public void Able_to_create_instance()
