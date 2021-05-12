@@ -4,7 +4,8 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Fakes
 {
     public static class AddressMockBuilder
     {
-        public static Address BuildGermany()
+        public static Address BuildGermany(
+            double VATRate = 0.19)
         {
             return new Address
             {
@@ -15,13 +16,32 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Fakes
                 {
                     Name = "Germany",
                     Iso2Code = "DE",
-                    VATRate = 0.19,
-                    IsInEU = true
+                    VATRate = VATRate,
+                    InEU = true
                 }
             };
         }
 
-        public static Address BuildMontenegro()
+        public static Address BuildFrance(
+            double VATRate = 0.2)
+        {
+            return new Address
+            {
+                StreetLine = "Champs-Élysées",
+                City = "Paris",
+                PostalCode = "75008",
+                Country = new Country
+                {
+                    Name = "France",
+                    Iso2Code = "FR",
+                    VATRate = VATRate,
+                    InEU = true
+                }
+            };
+        }
+
+        public static Address BuildMontenegro(
+            double VATRate = 0.21)
         {
             return new Address
             {
@@ -32,8 +52,8 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Fakes
                 {
                     Name = "Montenegro",
                     Iso2Code = "ME",
-                    VATRate = 0.21,
-                    IsInEU = false
+                    VATRate = VATRate,
+                    InEU = false
                 }
             };
         }

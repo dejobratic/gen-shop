@@ -24,6 +24,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
             actual.FullName.Should().Be(expectedFullName);
             actual.Address.Should().Be(expectedAddress);
             actual.PaysVAT.Should().Be(expectedPaysVAT);
+            actual.InEU.Should().Be(true);
         }
     }
 }

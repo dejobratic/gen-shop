@@ -5,6 +5,7 @@
         public string FullName { get; }
         public Address Address { get; }
         public bool PaysVAT { get; }
+        public bool InEU { get; }
 
         public TaxableEntity(
             string fullName,
@@ -14,6 +15,7 @@
             FullName = fullName;
             Address = address;
             PaysVAT = paysVAT;
+            InEU = address.Country.InEU;
         }
     }
 }

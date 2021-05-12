@@ -5,6 +5,6 @@
         public string Name { get; set; }
         public string Iso2Code { get; set; }
         public double VATRate { get; set; }
-        public bool IsInEU { get; set; }
+        public bool InEU { get; set; }
     }
 }

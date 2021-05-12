@@ -13,7 +13,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
         public void Able_to_create_instance()
         {
             var expectedFullName = "John Smith";
-            var expectedAddress = AddressMockBuilder.BuildGermany();
+            var expectedAddress = AddressMockBuilder.BuildMontenegro();
             var expectedPaysVAT = true;
 
             var actual = new Individual(
@@ -24,6 +24,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
             actual.FullName.Should().Be(expectedFullName);
             actual.Address.Should().Be(expectedAddress);
             actual.PaysVAT.Should().Be(expectedPaysVAT);
+            actual.InEU.Should().Be(false);
         }
     }
 }
