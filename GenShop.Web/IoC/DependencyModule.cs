@@ -25,7 +25,11 @@ namespace GenShop.Web.IoC
 
             services.AddScoped<
                 ICommand<GenerateInvoiceRequest, Contract::Invoice>,
-                GenerateInvoiceUseCase>();
+                GenerateInvoiceUseCase>();            
+            
+            services.AddScoped<
+                ICommand<GetInvoiceRequest, Contract::Invoice>,
+                GetInvoiceUseCase>();
         }
 
         public static void AddDataDependencies(
