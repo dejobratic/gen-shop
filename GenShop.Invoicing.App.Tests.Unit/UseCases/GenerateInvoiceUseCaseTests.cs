@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using GenShop.Invoicing.App.Repositories;
 using GenShop.Invoicing.App.Services;
 using GenShop.Invoicing.App.UseCases;
 using GenShop.Invoicing.Contract.Requests;

@@ -9,6 +9,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Fakes
             Guid? id = null,
             string number = "Invoice #",
             DateTime? createdAt = null,
+            Order order = null,
             Product product = null,
             Supplier supplier = null,
             Customer customer = null,
@@ -18,9 +19,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Fakes
                 id ?? Guid.NewGuid(),
                 number,
                 createdAt ?? DateTime.UtcNow.Date,
+                order ?? OrderMockBuilder.Build(),
+                product ?? ProductMockBuilder.Build(),
                 supplier ?? SupplierMockBuilder.Build(),
                 customer ?? CustomerMockBuilder.Build(),
-                product ?? ProductMockBuilder.Build(),
                 amount ?? new InvoiceAmount(30, 0.19));
         }
     }

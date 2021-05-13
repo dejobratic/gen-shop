@@ -8,22 +8,25 @@ namespace GenShop.Invoicing.Domain.Models
     {
         public string Number { get; }
         public DateTime CreatedAt { get; }
+        public Order Order { get; }
         public Supplier Supplier { get; }
         public Customer Customer { get; }
         public Product Product { get; }
         public InvoiceAmount Amount { get; }
 
         public Invoice(
+            Order order,
+            Product product,
             Supplier supplier,
-            Customer customer,
-            Product product)
+            Customer customer)
             : this(
                   Guid.NewGuid(),
                   Guid.NewGuid().ToString("n"),
                   DateTime.UtcNow,
+                  order,
+                  product,
                   supplier,
                   customer,
-                  product,
                   CalculateInvoiceAmount(product, supplier, customer))
         {
         }
@@ -32,14 +35,16 @@ namespace GenShop.Invoicing.Domain.Models
             Guid id,
             string number,
             DateTime createdAt,
+            Order order,
+            Product product,
             Supplier supplier,
             Customer customer,
-            Product product,
             InvoiceAmount amount)
             : base(id)
         {
             Number = number;
             CreatedAt = createdAt;
+            Order = order;
             Supplier = supplier;
             Customer = customer;
             Product = product;

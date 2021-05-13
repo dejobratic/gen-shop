@@ -1,4 +1,5 @@
 ﻿using GenShop.Invoicing.App.Extensions;
+using GenShop.Invoicing.App.Repositories;
 using GenShop.Invoicing.App.Services;
 using GenShop.Invoicing.Contract.Requests;
 using GenShop.Invoicing.Domain.Models;

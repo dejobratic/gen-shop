@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GenShop.Invoicing.App.Services
+namespace GenShop.Invoicing.App.Repositories
 {
     public interface IRepository<T>
         where T : Entity<Guid>

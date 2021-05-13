@@ -11,8 +11,8 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
     [TestCategory("Unit")]
     public class InvoiceTests
     {
-        private static readonly Product _product =
-            new Product("Clean Code", 30, Guid.NewGuid());
+        private static readonly Order _order = OrderMockBuilder.Build();
+        private static readonly Product _product = ProductMockBuilder.Build();
 
         [TestMethod]
         public void Able_to_create_instance()
@@ -22,16 +22,18 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
             var expectedAmount = new InvoiceAmount(30, 0.19);
 
             var actual = new Invoice(
+                _order,
+                _product,
                 expectedSupplier,
-                expectedCustomer,
-                _product);
+                expectedCustomer);
 
             actual.Id.Should().NotBeEmpty();
             actual.Number.Should().NotBeNullOrEmpty();
             actual.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, precision: 1000);
+            actual.Order.Should().Be(_order);
+            actual.Product.Should().Be(_product);
             actual.Supplier.Should().Be(expectedSupplier);
             actual.Customer.Should().Be(expectedCustomer);
-            actual.Product.Should().Be(_product);
             actual.Amount.Should().Be(expectedAmount);
         }
 
@@ -49,17 +51,19 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 expectedId,
                 expectedNumber,
                 expectedCreatedAt,
+                _order,
+                _product,
                 expectedSupplier,
                 expectedCustomer,
-                _product,
                 expectedAmount);
 
             actual.Id.Should().Be(expectedId);
             actual.Number.Should().Be(expectedNumber);
             actual.CreatedAt.Should().Be(expectedCreatedAt);
+            actual.Order.Should().Be(_order);
+            actual.Product.Should().Be(_product);
             actual.Supplier.Should().Be(expectedSupplier);
             actual.Customer.Should().Be(expectedCustomer);
-            actual.Product.Should().Be(_product);
             actual.Amount.Should().NotBeNull();
         }
 
@@ -72,9 +76,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 paysVat: false);
 
             var invoice = new Invoice(
+                _order,
+                _product,
                 supplier,
-                customer,
-                _product);
+                customer);
 
             invoice.Amount.VATRate.Should().Be(0);
         }
@@ -88,9 +93,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 paysVat: false);
 
             var invoice = new Invoice(
+                _order,
+                _product,
                 supplier,
-                customer,
-                _product);
+                customer);
 
             invoice.Amount.VATRate.Should().Be(0);
         }
@@ -104,9 +110,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 paysVat: true);
 
             var invoice = new Invoice(
+                _order,
+                _product,
                 supplier,
-                customer,
-                _product);
+                customer);
 
             invoice.Amount.VATRate.Should().Be(0);
         }
@@ -120,9 +127,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 paysVat: true);
 
             var invoice = new Invoice(
+                _order,
+                _product,
                 supplier,
-                customer,
-                _product);
+                customer);
 
             invoice.Amount.VATRate.Should().Be(0);
         }
@@ -139,9 +147,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 paysVat: false);
 
             var invoice = new Invoice(
+                _order,
+                _product,
                 supplier,
-                customer,
-                _product);
+                customer);
 
             invoice.Amount.VATRate.Should().Be(0.2);
         }
@@ -155,9 +164,10 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
                 paysVat: true);
 
             var invoice = new Invoice(
+                _order,
+                _product,
                 supplier,
-                customer,
-                _product);
+                customer);
 
             invoice.Amount.VATRate.Should().Be(0.19);
         }

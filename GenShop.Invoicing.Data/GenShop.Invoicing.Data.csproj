@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GenShop.Invoicing.App\GenShop.Invoicing.App.csproj" />
+    <ProjectReference Include="..\GenShop.Invoicing.Domain\GenShop.Invoicing.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

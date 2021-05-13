@@ -1,4 +1,5 @@
-﻿using GenShop.Invoicing.Domain.Models;
+﻿using GenShop.Invoicing.App.Repositories;
+using GenShop.Invoicing.Domain.Models;
 using System.Threading.Tasks;
 
 namespace GenShop.Invoicing.App.Services
@@ -31,7 +32,7 @@ namespace GenShop.Invoicing.App.Services
             Customer customer = await _customerRepo
                 .Get(order.CustomerId);
 
-            return new Invoice(supplier, customer, product);
+            return new Invoice(order, product, supplier, customer);
         }
     }
 }
