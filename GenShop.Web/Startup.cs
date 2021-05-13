@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ProShop.Web.Filters;
 
 namespace GenShop.Web
 {
@@ -22,11 +23,14 @@ namespace GenShop.Web
         {
             services.AddDependencies();
 
-            services.AddControllers();
+            services.AddControllers(o =>
+            {
+                o.Filters.Add(new ExceptionHandlingFilter());
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GenShop.Web", Version = "v1" });
-                //c.ResolveConflictingActions(a => a.First());
             });
         }
 
