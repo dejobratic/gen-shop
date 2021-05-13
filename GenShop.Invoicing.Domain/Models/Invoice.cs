@@ -1,4 +1,6 @@
-﻿using GenShop.Invoicing.Domain.Kernel;
+﻿using GenShop.Invoicing.Domain.Helpers;
+using GenShop.Invoicing.Domain.Kernel;
+using GenShop.Invoicing.Domain.Models.VATRateCalculation;
 using System;
 
 namespace GenShop.Invoicing.Domain.Models
@@ -6,6 +8,9 @@ namespace GenShop.Invoicing.Domain.Models
     public class Invoice :
         Entity<Guid>
     {
+        private static readonly IVATRateCalculationRule[] _VATRateCalculationRules =
+            Loader.LoadAllInterfaceImplementations<IVATRateCalculationRule>();
+
         public string Number { get; }
         public DateTime CreatedAt { get; }
         public Order Order { get; }
@@ -65,20 +70,11 @@ namespace GenShop.Invoicing.Domain.Models
         private static double CalculateVATRate(
             Supplier supplier, Customer customer)
         {
-            if (!supplier.PaysVAT)
-                return 0;
-
-            if (!customer.InEU)
-                return 0;
-
-            if (customer.InEU && !customer.PaysVAT && customer.Address.Country != supplier.Address.Country)
-                return customer.Address.Country.VATRate;
-
-            if (customer.InEU && customer.PaysVAT && customer.Address.Country != supplier.Address.Country)
-                return supplier.Address.Country.VATRate;
-
-            if (customer.Address.Country == supplier.Address.Country)
-                return customer.Address.Country.VATRate;
+            foreach (var rule in _VATRateCalculationRules)
+            {
+                var result = rule.Execute(supplier, customer);
+                if (result.IsSuccess) return result.Value;
+            }
 
             throw new Exception("Unable to calculate VAT rate.");
         }

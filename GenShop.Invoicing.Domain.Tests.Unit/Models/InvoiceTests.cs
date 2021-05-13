@@ -69,7 +69,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
 
         [TestMethod]
         [DynamicData(nameof(GetAllCustomers), DynamicDataSourceType.Method)]
-        public void Able_to_calculate_VAT_for_non_tax_paying_eu_supplier(Customer customer)
+        public void Able_to_calculate_VAT_rate_for_non_VAT_paying_EU_supplier(Customer customer)
         {
             var supplier = SupplierMockBuilder.Build(
                 address: AddressMockBuilder.BuildGermany(),
@@ -86,7 +86,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
 
         [TestMethod]
         [DynamicData(nameof(GetAllCustomers), DynamicDataSourceType.Method)]
-        public void Able_to_calculate_VAT_for_non_tax_paying_non_eu_supplier(Customer customer)
+        public void Able_to_calculate_VAT_rate_for_non_VAT_paying_non_EU_supplier(Customer customer)
         {
             var supplier = SupplierMockBuilder.Build(
                 address: AddressMockBuilder.BuildMontenegro(),
@@ -103,7 +103,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
 
         [TestMethod]
         [DynamicData(nameof(GetNonEuCustomers), DynamicDataSourceType.Method)]
-        public void Able_to_calculate_VAT_for_tax_paying_eu_supplier_and_non_non_eu_customer(Customer customer)
+        public void Able_to_calculate_VAT_rate_for_VAT_paying_EU_supplier_and_non_non_EU_customer(Customer customer)
         {
             var supplier = SupplierMockBuilder.Build(
                 address: AddressMockBuilder.BuildGermany(),
@@ -119,24 +119,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
         }
 
         [TestMethod]
-        [DynamicData(nameof(GetNonEuCustomers), DynamicDataSourceType.Method)]
-        public void Able_to_calculate_VAT_for_tax_paying_non_eu_supplier_and_non_eu_customer(Customer customer)
-        {
-            var supplier = SupplierMockBuilder.Build(
-                address: AddressMockBuilder.BuildMontenegro(),
-                paysVat: true);
-
-            var invoice = new Invoice(
-                _order,
-                _product,
-                supplier,
-                customer);
-
-            invoice.Amount.VATRate.Should().Be(0);
-        }
-
-        [TestMethod]
-        public void Able_to_calculate_VAT_for_tax_paying_supplier_and_non_tax_paying_eu_customer_that_do_not_live_in_same_country()
+        public void Able_to_calculate_VAT_rate_for_VAT_paying_supplier_and_non_VAT_paying_EU_customer_that_do_not_live_in_same_country()
         {
             var supplier = SupplierMockBuilder.Build(
                 address: AddressMockBuilder.BuildGermany(VATRate: 0.19),
@@ -157,7 +140,7 @@ namespace GenShop.Invoicing.Domain.Tests.Unit.Models
 
         [TestMethod]
         [DynamicData(nameof(GetGermanCustomers), DynamicDataSourceType.Method)]
-        public void Able_to_calculate_VAT_for_tax_paying_supplier_and_customer_that_live_in_same_country(Customer customer)
+        public void Able_to_calculate_VAT_rate_for_VAT_paying_supplier_and_customer_that_live_in_same_country(Customer customer)
         {
             var supplier = SupplierMockBuilder.Build(
                 address: AddressMockBuilder.BuildGermany(VATRate: 0.19),
