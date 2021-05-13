@@ -7,12 +7,20 @@ namespace GenShop.Invoicing.Domain.Models
         Entity<Guid>
     {
         public Guid CustomerId { get; }
-        public Guid ProductId { get;  }
+        public Guid ProductId { get; }
 
         public Order(
-            Guid customerId, 
+            Guid customerId,
             Guid productId)
-            : base(Guid.NewGuid())
+            : this(Guid.NewGuid(), customerId, productId)
+        {
+        }
+
+        public Order(
+            Guid id,
+            Guid customerId,
+            Guid productId)
+            : base(id)
         {
             CustomerId = customerId;
             ProductId = productId;

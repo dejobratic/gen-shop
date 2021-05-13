@@ -15,8 +15,18 @@ namespace GenShop.Invoicing.Domain.Models
             string fullName,
             Address address,
             bool paysVAT)
-            : base(Guid.NewGuid())
+            : this(Guid.NewGuid(), fullName, address, paysVAT)
         {
+        }
+
+        public TaxableEntity(
+            Guid id,
+            string fullName,
+            Address address,
+            bool paysVAT)
+            : base(id)
+        {
+            Id = id;
             FullName = fullName;
             Address = address;
             PaysVAT = paysVAT;

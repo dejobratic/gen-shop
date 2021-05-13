@@ -1,23 +1,15 @@
-﻿using GenShop.Invoicing.Domain.Exceptions;
+﻿using GenShop.Invoicing.App.Repositories;
+using GenShop.Invoicing.Domain.Exceptions;
 using GenShop.Invoicing.Domain.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GenShop.Invoicing.Data.Repositories
 {
     public class DummyInvoiceRepository :
-        BaseRepository<Invoice>
+        BaseRepository<Invoice>,
+        IInvoiceRepository
     {
-        public DummyInvoiceRepository()
-            : base()
-        {
-            _cache = new Dictionary<System.Guid, Invoice>
-            {
-
-            };
-        }
-
         public override Task Save(Invoice invoice)
         {
             if(_cache.ContainsKey(invoice.Id))
