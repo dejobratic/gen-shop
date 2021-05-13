@@ -44,7 +44,7 @@ namespace GenShop.Invoicing.Data.Repositories
                                 "ME",
                                 0.21,
                                 false)),
-                        true)
+                        false)
                 },
                 {
                     new Guid("A9E9DD15-188E-47AE-9BA7-E435DDF89470"),
@@ -52,14 +52,14 @@ namespace GenShop.Invoicing.Data.Repositories
                         new Guid("A9E9DD15-188E-47AE-9BA7-E435DDF89470"),
                         "French VAT Paying Supplier",
                         new Address(
-                            "Cetinjski put bb",
-                            "Podgorica",
-                            "81000",
+                            "Champs-Élysées",
+                            "Paris",
+                            "75008",
                             new Country(
-                                "Montenegro",
-                                "ME",
-                                0.21,
-                                false)),
+                                "France",
+                                "FR",
+                                0.2,
+                                true)),
                         true)
                 },
                 {
@@ -68,15 +68,15 @@ namespace GenShop.Invoicing.Data.Repositories
                         new Guid("EAF51FAB-8DB8-4D73-8095-5DA37440D0F8"),
                         "French Non VAT Paying Supplier",
                         new Address(
-                            "Cetinjski put bb",
-                            "Podgorica",
-                            "81000",
+                            "Champs-Élysées",
+                            "Paris",
+                            "75008",
                             new Country(
-                                "Montenegro",
-                                "ME",
-                                0.21,
-                                false)),
-                        true)
+                                "France",
+                                "FR",
+                                0.2,
+                                true)),
+                        false)
                 },
                 {
                     new Guid("C2FA76BE-0A9F-4EDA-8FE2-8C512E9874FA"),
@@ -84,14 +84,14 @@ namespace GenShop.Invoicing.Data.Repositories
                         new Guid("C2FA76BE-0A9F-4EDA-8FE2-8C512E9874FA"),
                         "German VAT Paying Supplier",
                         new Address(
-                            "Cetinjski put bb",
-                            "Podgorica",
-                            "81000",
+                            "Hermanstrasse 35a",
+                            "Augsburg",
+                            "86154",
                             new Country(
-                                "Montenegro",
-                                "ME",
-                                0.21,
-                                false)),
+                                "Germany",
+                                "DE",
+                                0.19,
+                                true)),
                         true)
                 },
                 {
@@ -100,15 +100,15 @@ namespace GenShop.Invoicing.Data.Repositories
                         new Guid("B65F8070-B045-49C7-80A3-9C3C13B791B8"),
                         "German Non VAT Paying Supplier",
                         new Address(
-                            "Cetinjski put bb",
-                            "Podgorica",
-                            "81000",
+                            "Hermanstrasse 35a",
+                            "Augsburg",
+                            "86154",
                             new Country(
-                                "Montenegro",
-                                "ME",
-                                0.21,
-                                false)),
-                        true)
+                                "Germany",
+                                "DE",
+                                0.19,
+                                true)),
+                        false)
                 }
             };
         }

@@ -1,4 +1,5 @@
 ﻿using GenShop.Invoicing.Domain.Kernel;
+using System;
 
 namespace GenShop.Invoicing.Domain.Models
 {
@@ -14,11 +15,14 @@ namespace GenShop.Invoicing.Domain.Models
             double subtotal,
             double VATRate)
         {
-            Subtotal = subtotal;
-            this.VATRate = VATRate;
+            Subtotal = RoundToTwoDecimals(subtotal);
+            this.VATRate = RoundToTwoDecimals(VATRate);
 
-            VAT = Subtotal * VATRate;
-            Total = Subtotal + VAT;
+            VAT = RoundToTwoDecimals(Subtotal * VATRate);
+            Total = RoundToTwoDecimals(Subtotal + VAT);
         }
+
+        private static double RoundToTwoDecimals(double number)
+            => Math.Round(number, 2);
     }
 }
