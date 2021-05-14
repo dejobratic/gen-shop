@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GenShop.Invoicing.Data.Tests.Unit.Repositories
 {
+    [TestCategory("Unit")]
     public abstract class BaseRepositoryTests<T>
         where T : Entity<Guid>
     {
