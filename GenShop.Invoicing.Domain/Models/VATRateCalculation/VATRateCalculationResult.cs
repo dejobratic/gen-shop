@@ -1,6 +1,6 @@
 ﻿namespace GenShop.Invoicing.Domain.Models.VATRateCalculation
 {
-    internal class VATRateCalculationResult
+    public class VATRateCalculationResult
     {
         public bool IsSuccess { get; }
         public double Value { get; }

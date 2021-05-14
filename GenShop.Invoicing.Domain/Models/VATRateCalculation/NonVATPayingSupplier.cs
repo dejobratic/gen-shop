@@ -1,6 +1,6 @@
 ﻿namespace GenShop.Invoicing.Domain.Models.VATRateCalculation
 {
-    internal class NonVATPayingSupplier :
+    public class NonVATPayingSupplier :
         IVATRateCalculationRule
     {
         public VATRateCalculationResult Execute(
