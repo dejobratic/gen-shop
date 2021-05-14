@@ -1,8 +1,8 @@
-﻿using GenShop.Invoicing.App.Repositories;
-using GenShop.Invoicing.App.Services;
+﻿using GenShop.Invoicing.App.Services;
 using GenShop.Invoicing.App.UseCases;
 using GenShop.Invoicing.Contract.Requests;
 using GenShop.Invoicing.Data.Repositories;
+using GenShop.Invoicing.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 using Contract = GenShop.Invoicing.Contract.Models;
@@ -35,6 +35,7 @@ namespace GenShop.Web.IoC
         public static void AddDataDependencies(
             this IServiceCollection services)
         {
+            // registered as singletons due to dictionary that stores data in app lifetime
             services.AddSingleton<IProductRepository, DummyProductRepository>();
             services.AddSingleton<IOrderRepository, DummyOrderRepository>();
             services.AddSingleton<ISupplierRepository, DummySupplierRepository>();

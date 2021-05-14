@@ -1,5 +1,5 @@
-﻿using GenShop.Invoicing.App.Repositories;
-using GenShop.Invoicing.Domain.Models;
+﻿using GenShop.Invoicing.Domain.Models;
+using GenShop.Invoicing.Domain.Repositories;
 using System.Threading.Tasks;
 
 namespace GenShop.Invoicing.App.Services

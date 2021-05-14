@@ -1,6 +1,6 @@
 ﻿using GenShop.Invoicing.Domain.Models;
 
-namespace GenShop.Invoicing.App.Repositories
+namespace GenShop.Invoicing.Domain.Repositories
 {
     public interface IOrderRepository :
         IRepository<Order>

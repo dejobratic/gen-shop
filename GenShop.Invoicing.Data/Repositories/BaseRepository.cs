@@ -1,6 +1,6 @@
-﻿using GenShop.Invoicing.App.Repositories;
-using GenShop.Invoicing.Domain.Exceptions;
+﻿using GenShop.Invoicing.Domain.Exceptions;
 using GenShop.Invoicing.Domain.Kernel;
+using GenShop.Invoicing.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

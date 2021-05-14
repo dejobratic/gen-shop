@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using GenShop.Invoicing.App.Repositories;
 using GenShop.Invoicing.App.Services;
 using GenShop.Invoicing.App.UseCases;
 using GenShop.Invoicing.Contract.Requests;
 using GenShop.Invoicing.Domain.Models;
+using GenShop.Invoicing.Domain.Repositories;
 using GenShop.Invoicing.Domain.Tests.Unit.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
